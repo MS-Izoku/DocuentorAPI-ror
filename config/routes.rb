@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :collaberations
   resources :users
   resources :documents
   resources :chapters

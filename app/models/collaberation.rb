@@ -1,0 +1,2 @@
+class Collaberation < ApplicationRecord
+end
