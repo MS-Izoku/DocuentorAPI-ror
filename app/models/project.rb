@@ -3,4 +3,5 @@ class Project < ApplicationRecord
     has_many :books
     has_many :documents
     has_many :characters
+    has_many :collaberations
 end
