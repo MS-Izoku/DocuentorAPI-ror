@@ -16,17 +16,16 @@ class ProjectsController < ApplicationController
 
     def update
         project = Project.find_by(id: params[:id])
+        check_if_exists(project)
         project.update(project_params)
         render json: project
     end
 
     def delete
         project = Project.find_by(id: params[:id])
-        if !project
-            render json: {error: 404 , msg: "Project could not be found"}
-        else
-            render json: project
-        end
+        check_if_exists(project)
+        project.delete
+        render json: project
     end
 
     private

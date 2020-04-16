@@ -1,3 +1,4 @@
+# User Seeding
 user_1 = User.create(username: "ThatNewjackSwing" , email: "testemail@gmail.com" , password: "password")
 user_2 = User.create(username: "CowboyBlank" , email: "testemail@gmail.com" , password: "password")
 
