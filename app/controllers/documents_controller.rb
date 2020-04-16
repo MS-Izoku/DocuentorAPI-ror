@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
     def index
-        documents = Document.where(project_id: params[:id])
+        documents = Document.where(project_id: params[:project_id])
         render json: documents
     end
 

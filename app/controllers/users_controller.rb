@@ -32,8 +32,4 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:username , :password , :email)
     end
-
-    def check_if_exists(model)
-        render json: {error: 400 , msg: "User not found"} if !model
-    end
 end

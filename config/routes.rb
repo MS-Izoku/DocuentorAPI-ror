@@ -13,24 +13,33 @@ Rails.application.routes.draw do
   patch 'projects/:id' , to: 'projects#create'
   delete 'projects/:id' , to: 'projects#delete'
 
+  ###
   # Documents
-  get 'projects/:project_id/documents', to: 'documents#index'
-  get 'documents/:id' , to: 'documents#show'
-  post 'documents/' , to: 'documents#create'
-  patch 'documents/:id' , to: 'documents#update'
-  delete 'documents/:id' , to: 'documents#delete'
+  get 'projects/:project_id/documents/', to: 'documents#index' 
+  get 'projects/:project_id/documents/:id' , to: 'documents#show' 
+  post 'projects/:project_id/documents/' , to: 'documents#create' 
+  patch 'projects/:project_id/documents/:id' , to: 'documents#update' 
+  delete 'projects/:project_id/documents/:id' , to: 'documents#delete' 
 
+  ###
   # Books
   get 'projects/:project_id/books' , to: 'books#index'
-  get 'book/:id' , to: 'books#show'
-  post 'books/' , to: 'books#create'
-  patch 'books/:id' , to: 'books#update'
-  delete 'books/:id' , to: 'books#delete'
+  get 'projects/:project_id/book/:id' , to: 'books#show'
+  post 'projects/:project_id/books/' , to: 'books#create'
+  patch 'projects/:project_id/books/:id' , to: 'books#update'
+  delete 'projects/:project_id/books/:id' , to: 'books#delete'
 
   # Collaberations
-  get 'projects/collaberations/:project_id/collaberations' , to: 'collaberations#index'
-  post 'projects/collaberations/:project_id/user/:user_id' , to: 'collaberations#create'
-  delete 'projects/collaberations/:id' , to: 'collaberations#delete'
+  get 'projects/:project_id/collaberations/collaberations' , to: 'collaberations#index'
+  post 'projects/:project_id/collaberations/:project_id/user/:user_id' , to: 'collaberations#create'
+  delete 'projects/:project_id/collaberations/:id' , to: 'collaberations#delete'
+
+
+  # Users
+  get 'users/:id' , to: 'users#show'
+  post 'users/' , to: 'users#create'
+  patch 'users/:id' , to: 'users#update'
+  delete 'users/:id' , to: 'users#delete'
 
   # Auth
 
