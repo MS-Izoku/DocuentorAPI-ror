@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Endpoints
+  ## Projects
+  Index: 'projects/index/:user_id'
+  Show: 'projects/:id'
+  Post: 'projects'
+  Update: 'projects/:id'
+  Delete: 'projects/:id'
 
-* Ruby version
+  ## Documents
+  Index: 'projects/:project_id/documents'
+  Show: 'documents/:id' 
+  Post: 'documents/' 
+  Update: 'documents/:id' 
+  Delete: 'documents/:id' 
 
-* System dependencies
+  ## Books
+  Index: 'projects/:project_id/books'
+  Show: 'book/:id'
+  Post: 'books/'
+  Update: 'books/:id'
+  Delete: 'books/:id'
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  ## Collaberations
+  Index: 'projects/collaberations/:project_id/collaberations'
+  Create: 'projects/collaberations/:project_id/user/:user_id'
+  Delete: 'projects/collaberations/:id' 
