@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
     end
 
     def show
-        document = Document.find_by(id: parmas[:id])
+        document = Document.find_by(id: params[:id])
         render json: document
     end
 
