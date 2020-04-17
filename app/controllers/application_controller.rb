@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+    before_action :authorized
+    
     def check_if_exists(model)
         render json: {error: 400 , msg: "Model #{model.class} not found"} if !model
     end

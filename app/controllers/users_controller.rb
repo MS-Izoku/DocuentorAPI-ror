@@ -1,10 +1,18 @@
 class UsersController < ApplicationController
+    skip_before_action :authorized , only: [:create]
+
+    def profile
+        # current user is from ApplicationController
+        render json: {user: current_user}
+    end
+
     def create
         user = User.create(user_params)
-        if !user
+        if !user.valid?
             render json: {error: "400" , msg: "Error creating user"}
         else
-            render json: user
+            # create initial JWT when creation succeeds
+            render json: {user: user , jwt: encode_token(user_id: user.id)}
         end
     end
 
