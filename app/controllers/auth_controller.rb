@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
     skip_before_action :authorized , only: [:create]
-    def create
+    def login
         user = User.find_by(username: login_params[:username])
         if user && user.authenticate(user_login_params[:password])
             token = encode_token({user_id: user.id})
@@ -8,9 +8,6 @@ class AuthController < ApplicationController
         else
             render json: {error: "400" , msg: 'Invalid Username or Password'}
         end 
-    end
-
-    def login
     end
 
     def oauth_login
