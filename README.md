@@ -1,6 +1,36 @@
 # README
 
+# Classes and Usage
+## Forum System:
+### Forum
+The main forum class, holds the others together
 
+### ForumThread
+Individual threads on a parent forum.
+** They use a polymorphic asscociation with likables and commentables
+
+### ForumPost
+Post inside of an individual thread.  Can be commented on and liked
+** They use a polymorphic asscociation with likables and commentables
+
+## Project System
+### Project
+
+### Document
+A collection of text-areas combined into a single cohesive piece that represents a complete document.
+It belongs to a project.
+
+### TextArea
+A simple class that has a title and text fields.  The text will have richtext markup.  
+Belongs to a document or a character, and has a specific location on the document itself.
+The frontend will be responsible for formatting the data.
+** TBD: turn this into a polymorphic asscociation
+
+### Book
+A collection of chapters to form a a larger-form formatted book.
+It belongs to a project
+
+### Chapter
 
 # Endpoints
   ## Projects

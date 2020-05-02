@@ -21,3 +21,14 @@ end
     test_document = Document.create(project_id: test_project_1.id , title: "Test Document #{document}" , summary: "Generated Test Document")
 end
 
+
+20.times do |forum|
+    forum_area = Forum.create(title: "Forum Area #{forum}")
+
+    20.times do |thread|
+        new_thread = ForumThread.create(user_id: User.first.id , title: "Title!" , content: Faker::Lorem.paragraphs(number: 5) , forum_id: forum_area.id);
+        50.times do |forum_post|
+            new_post = ForumPost.create(user_id: User.first.id , content: Faker.Lorem(paragraphs(number: 5)))
+        end
+    end
+end

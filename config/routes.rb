@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
+  resources :characters
+  resources :forum_posts
+  resources :forums
+  resources :commentables
+  resources :likables
   # resources :collaberations
   # resources :users
   # resources :documents
   # resources :chapters
   # resources :books
   # resources :projects
+
+  # setup nested routes
 
   # Projects
   get '/projects/index/:user_id' , to: "projects#index"

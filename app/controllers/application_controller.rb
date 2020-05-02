@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
-    before_action :authorized
-    
+    #before_action :authorized
+
     def check_if_exists(model)
         render json: {error: 400 , msg: "Model #{model.class} not found"} if !model
     end
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
         JWT.encode(payload , ApplicationController.secret)
     end
 
-    def decoded_token(token)
+    def decoded_token
         if auth_header
             token = auth_header.split(' ')[1]
             begin
@@ -36,7 +36,8 @@ class ApplicationController < ActionController::API
     end
 
     def authorized
-        render json: {msg: 'Please Log In'} , status: unauthorized unless logged_in?
+        render json: {msg: 'Please Log In'} , status: :unauthorized unless logged_in?
+    end
             
     private
     def self.secret
