@@ -16,6 +16,12 @@ class UsersController < ApplicationController
         end
     end
 
+    def change_password
+        user = User.find_by(email: params[:email])
+        if !user
+            render json: {error: {msg: "User not found"} } 
+    end
+
     def show
         user = User.find_by(id: params[:id])
         check_if_exists(user)

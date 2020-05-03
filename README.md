@@ -1,6 +1,18 @@
 # README
 
 # Classes and Usage
+
+## Polymorphic-Asscociated Classes
+### Like and "Likeable"
+A tally of "likes" on a particular component
+
+Forum-thread
+Forum-post
+
+
+
+### Comment and "Commentable"
+
 ## Forum System:
 ### Forum
 The main forum class, holds the others together
@@ -31,6 +43,8 @@ A collection of chapters to form a a larger-form formatted book.
 It belongs to a project
 
 ### Chapter
+A long-form block of text that can be seperated into pages.
+It belongs to a Book
 
 # Endpoints
   ## Projects

@@ -1,6 +1,7 @@
 # User Seeding
 user_1 = User.create(username: "ThatNewjackSwing" , email: "testemail@gmail.com" , password: "password")
 user_2 = User.create(username: "CowboyBlank" , email: "testemail@gmail.com" , password: "password")
+user_3 = User.create(username: "CrunchyPringles" , email: "testemail@gmail.com" , password: "password")
 
 # Project Seeding
 test_project_1 = Project.create(user_id: 1 , title: "Test Project 1" , summary: "A sample project generated from the seed")
