@@ -2,6 +2,18 @@
 
 # Classes and Usage
 
+## Users and Auth
+### Users
+Validations:
+* Username: pressence , uniqueness
+* Password: pressence, confirmation, and a custom REGEX format requirement
+* Email: pressence , confirmation , uniqueness, and special validations given the valid_email2 gem
+
+gem i valid_email2
+
+Security:
+* Passwords created and authenticated using BCrypt
+
 ## Polymorphic-Asscociated Classes
 ### Like and "Likeable"
 A tally of "likes" on a particular component
@@ -10,8 +22,16 @@ Forum-thread
 Forum-post
 
 
-
 ### Comment and "Commentable"
+Something that can be commented on.  A comment itself is just a string of text (no larger-text), which is attached to something else.
+
+Possble Commentables:
+* Book
+* Forum-Posts (Forum => Thread => Post => Comment)
+* Document
+
+Possible Uses:
+* Aliased as "notes" for use in a particular TextArea or chapter
 
 ## Forum System:
 ### Forum
@@ -22,11 +42,12 @@ Individual threads on a parent forum.
 ** They use a polymorphic asscociation with likables and commentables
 
 ### ForumPost
-Post inside of an individual thread.  Can be commented on and liked
+Post inside of an individual thread.  Can be commented on and liked 
 ** They use a polymorphic asscociation with likables and commentables
 
 ## Project System
 ### Project
+A collection of documents, books, and characters that can be searched through and interconnected.  Meant to be a living, breathing home for all of that nasty paperwork.
 
 ### Document
 A collection of text-areas combined into a single cohesive piece that represents a complete document.
@@ -80,3 +101,5 @@ It belongs to a Book
   Delete: 'users/:id' , to: 'users#delete'
 
   ## Authorization / Authentication
+  Login (POST):  '/login' , to: 'auth#login'
+  Profile (GET): '/profile', to: 'users#profile'
