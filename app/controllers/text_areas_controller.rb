@@ -1,0 +1,2 @@
+class TextAreasController < ApplicationController
+end

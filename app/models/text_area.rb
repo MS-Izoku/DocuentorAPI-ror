@@ -1,0 +1,2 @@
+class TextArea < ApplicationRecord
+end
