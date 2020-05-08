@@ -1,3 +1,4 @@
 class Commentable < ApplicationRecord
-    has_one :comment
+    belongs_to :comment , polymorphic: true
+    belongs_to :user
 end

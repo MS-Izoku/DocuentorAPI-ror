@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   delete '/users/:id' , to: 'users#delete'
 
   # Auth
-  post '/login' , to: 'auth#login'
-  get '/profile', to: 'users#profile'
+  post '/login/' , to: 'auth#login'
+  get '/profile/', to: 'users#profile'
 
 end
