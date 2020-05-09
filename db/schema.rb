@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_07_184421) do
+ActiveRecord::Schema.define(version: 2020_05_08_200254) do
 
   create_table "books", force: :cascade do |t|
     t.integer "project_id"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_184421) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "forum_thread_id"
   end
 
   create_table "forum_threads", force: :cascade do |t|
@@ -83,8 +84,10 @@ ActiveRecord::Schema.define(version: 2020_05_07_184421) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "likables", force: :cascade do |t|
+  create_table "likes", force: :cascade do |t|
     t.string "user_id"
+    t.integer "likable_id"
+    t.string "likable_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

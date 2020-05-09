@@ -1,15 +1,21 @@
+# There are many print statements so that I can see them in console
+# My computer is old, and I'm never sure if it's crashing.  It does that
+
+# Seed Setup
+create_users = true
+create_projects = true
+create_forums = true
+
 # User Seeding
-user_1 = User.create(username: "ThatNewjackSwing" , email: "spicuzza157@gmail.com" , password: "Password1!")
-# user_2 = User.create(username: "CowboyBlank" , email: "testemail@gmail.com" , password: "password")
-# user_3 = User.create(username: "CrunchyPringles" , email: "testemail@gmail.com" , password: "password")
+def generate_users
+    name = Faker::Internet.username(specifier: 8..20)
+    user = User.new(username: name , email: Faker::Internet.safe_email(name: name) , password: "Password1!")
+end
 
 # Project Seeding
-
-
 def generate_project
     puts "Generating Project"
     test_project = Project.create(user_id: User.first.id , title: "Test Project 1" , summary: "A sample project generated from the seed")
-    #test_book_1 = Book.create(project_id: test_project_1.id , title: "Test Project 1 Book", summary: "A generated book from the seed")
     
     puts "Generating Seed Books"
     # Book Seeding
@@ -27,31 +33,48 @@ def generate_project
     puts "Generating Documents"
     3.times do |document|
         test_document = Document.create(project_id: test_project.id , title: "Test Document #{document + 1}" , summary: "Generated Test Document")
-        # 20.times do |textarea|
-        #     new_text_area = TextArea.create(document_id: test_document.id)
-        # end
     end
-end
-
-10.times do |index|
-    puts ">> Creating project #{index}"
-    generate_project
 end
 
 # Generate Forums
-20.times do |forum|
-    puts ">> Creating Forum (#{forum})"
-    forum_area = Forum.create(title: "Forum Area #{forum + 1}")
-
-    # Forum-Thread Generation
-    puts "Creating Threads"
-    20.times do |thread|
-        new_thread = ForumThread.create(user_id: User.first.id , title: "Title #{thread + 1}!" , content: Faker::Lorem.paragraphs(number: 5) , forum_id: forum_area.id);
-        
-        puts "Creating Posts"
-        # Post Seeding
-        50.times do |forum_post|
-            new_post = ForumPost.create(user_id: User.first.id , content: Faker::Lorem.paragraphs(number: 5))
+def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread = 10)
+    forum_count.times do |forum|
+        puts ">> Creating Forum (#{forum})"
+        forum_area = Forum.create(title: "Forum Area #{forum + 1}")
+    
+        # Forum-Thread Generation
+        puts "   Creating Threads"
+        threads_per_forum.times do |thread|
+            new_thread = ForumThread.create(user_id: User.first.id , title: "Title #{thread + 1}!" , content: Faker::Lorem.paragraphs(number: 5) , forum_id: forum_area.id);
+            
+            puts "     Creating Posts (#{forum} : #{thread}) * #{posts_per_thread}"
+            # Post Seeding
+            posts_per_thread.times do |forum_post|
+                new_post = ForumPost.create(user_id: User.first.id , forum_thread_id: new_thread.id content: Faker::Lorem.paragraphs(number: 5))
+                3.times do
+                    Comment.create(content: "I'm a Comment!" , commentable: new_post)
+                end
+            end
         end
     end
 end
+
+
+# Seed Generation Chain
+ 
+ 
+        # Main Test Account
+        User.create(username: "ThatNewjackSwing" , email: "spicuzza157@gmail.com" , password: "Password1!")
+        20.times do |user|
+            generate_users 
+        end
+
+    
+    if create_projects
+        10.times do |index|
+            puts ">> Creating project #{index}"
+            generate_project
+        end 
+    end
+    
+    generate_forums(10 , 10 , 10) if generate_forums

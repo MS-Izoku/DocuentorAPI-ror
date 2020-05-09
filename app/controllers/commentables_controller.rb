@@ -1,2 +1,3 @@
 class CommentablesController < ApplicationController
+
 end
