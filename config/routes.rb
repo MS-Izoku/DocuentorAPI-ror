@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :savables
+  resources :dislikes
   resources :project_updates
   resources :text_areas
   resources :characters

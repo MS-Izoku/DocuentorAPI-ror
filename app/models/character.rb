@@ -2,6 +2,7 @@ class Character < ApplicationRecord
     belongs_to :project
     has_many :text_areas , as: :text_areable
     has_many :project_updates , as: :updatable
+    has_many :sa
 
     def generate_character_template
         char = Character.create(name = "New Character" , height = 150 , weight = 90)

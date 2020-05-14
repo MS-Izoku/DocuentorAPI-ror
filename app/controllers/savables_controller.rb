@@ -1,0 +1,2 @@
+class SavablesController < ApplicationController
+end
