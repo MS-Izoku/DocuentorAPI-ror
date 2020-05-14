@@ -1,9 +1,13 @@
 class ProjectUpdate < ApplicationRecord
-    before_create :generate_unique_report_number, :generate_update_report
+    before_create :generate_unique_report_number, :generate_update_report_content
 
     belongs_to :updatable , :polymorphic => true
     belongs_to :user
     belongs_to :project
+
+    def self.generate_template
+        ProjectUpdate.create!(user_id: User.first.id , project_id: Project.first.id , updatable: Project.first)
+    end
 
     private
     def generate_unique_report_number
@@ -12,9 +16,11 @@ class ProjectUpdate < ApplicationRecord
         begin
             random_int = SecureRandom.random_number(100000000)
         end while ProjectUpdate.where(report_number: random_int).exists?
+        self.report_number = random_int
     end
 
-    def generate_update_report
-        puts "Creating A Report!"
+    def generate_update_report_content
+        message = "You have a new Update to: #{self.project.title}!"
+        self.report_content = message
     end
 end
