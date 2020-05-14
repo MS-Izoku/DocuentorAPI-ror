@@ -50,7 +50,7 @@ def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread =
             puts "     Creating Posts (#{forum} : #{thread}) * #{posts_per_thread}"
             # Post Seeding
             posts_per_thread.times do |forum_post|
-                new_post = ForumPost.create(user_id: User.first.id , forum_thread_id: new_thread.id content: Faker::Lorem.paragraphs(number: 5))
+                new_post = ForumPost.create(user_id: User.first.id , forum_thread_id: new_thread.id ,  content: Faker::Lorem.paragraphs(number: 5))
                 3.times do
                     Comment.create(content: "I'm a Comment!" , commentable: new_post)
                 end
@@ -59,22 +59,24 @@ def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread =
     end
 end
 
+# Generate Updates
+
 
 # Seed Generation Chain
- 
- 
-        # Main Test Account
-        User.create(username: "ThatNewjackSwing" , email: "spicuzza157@gmail.com" , password: "Password1!")
-        20.times do |user|
-            generate_users 
-        end
+
+# Main Test Account
+User.create(username: "ThatNewjackSwing" , email: "spicuzza157@gmail.com" , password: "Password1!")
+
+20.times do |user|
+    generate_users 
+end
 
     
-    if create_projects
-        10.times do |index|
-            puts ">> Creating project #{index}"
-            generate_project
-        end 
-    end
+if create_projects
+    10.times do |index|
+        puts ">> Creating project #{index}"
+        generate_project
+    end 
+end
     
-    generate_forums(10 , 10 , 10) if generate_forums
+generate_forums(10 , 10 , 10) if generate_forums

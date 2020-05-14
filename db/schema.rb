@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_08_200254) do
+ActiveRecord::Schema.define(version: 2020_05_14_174628) do
 
   create_table "books", force: :cascade do |t|
     t.integer "project_id"
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(version: 2020_05_08_200254) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "project_updates", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.integer "updatable_id"
+    t.string "updatable_type"
+    t.string "report_number"
+    t.text "report_content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
@@ -103,6 +114,8 @@ ActiveRecord::Schema.define(version: 2020_05_08_200254) do
   create_table "text_areas", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.string "text_areable_type"
+    t.integer "text_areable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

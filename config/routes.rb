@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :project_updates
   resources :text_areas
   resources :characters
   resources :forum_posts
