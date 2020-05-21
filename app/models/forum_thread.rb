@@ -5,5 +5,5 @@ class ForumThread < ApplicationRecord
     has_many :likes , as: :likable
     has_many :dislikes , as: :dislikable
 
-    validates :title , pressence: true
+    validates :title , presence: true
 end

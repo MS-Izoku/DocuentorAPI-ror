@@ -1,5 +1,5 @@
 class ForumPost < ApplicationRecord
-    validates :content , pressence: true
+    validates :content , presence: true
 
     belongs_to :forum_thread
     belongs_to :user

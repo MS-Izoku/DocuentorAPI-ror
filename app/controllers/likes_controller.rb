@@ -12,7 +12,7 @@ class LikesController < ApplicationController
 
     def update
         like = Like.find_by(like_params)
-        like.update(isDislike: !like.isDislike)
+        like.update(is_dislike: !like.is_dislike)
         render json: like
     end
 
