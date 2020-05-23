@@ -5,6 +5,7 @@
 create_users = true
 create_projects = true
 create_forums = true
+create_likes_on_forums = true
 
 # Main Test Account
 default_username = "ThatNewjackSwing"
@@ -63,6 +64,20 @@ def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread =
             end
         end
     end
+end
+
+# Generate Likes
+def generate_likes(min_likes = 0)
+    max_likes = User.all.count
+
+    Comment.all.each do |comment|
+        like_count = rand(min_likes..max_likes).to_i
+        target_comment = Comment.find_by(id: comment + 1)
+        like_count.times do |like|
+            Like.create(user_id: User.find_by(id: like + 1).id , likable: target_comment)
+        end
+    end
+
 end
 
 # Generate Updates

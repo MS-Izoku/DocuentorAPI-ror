@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :forum_posts
   resources :forums
   resources :comments
-  resources :likes , only [:create , :update , :delete]
+  resources :likes , only: [:create , :update , :delete]
   # resources :collaberations
   # resources :users
   # resources :documents
