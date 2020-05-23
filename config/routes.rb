@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
-  resources :savables
-  resources :dislikes
   resources :project_updates
   resources :text_areas
   resources :characters
   resources :forum_posts
   resources :forums
-  resources :commentables
-  resources :likables
+  resources :comments
+  resources :likes , only [:create , :update , :delete]
   # resources :collaberations
   # resources :users
   # resources :documents
