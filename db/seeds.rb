@@ -5,11 +5,18 @@
 create_users = true
 create_projects = true
 create_forums = true
+create_likes_on_forums = true
+
+# Main Test Account
+default_username = "ThatNewjackSwing"
+User.create(username: default_username , email: "spicuzza157@gmail.com" , password: "Password1!") if !!User.find_by(username: default_username)
 
 # User Seeding
-def generate_users
-    name = Faker::Internet.username(specifier: 8..20)
-    user = User.new(username: name , email: Faker::Internet.safe_email(name: name) , password: "Password1!")
+def generate_users(user_count = 1)
+    user_count.times do |user_index|
+        name = Faker::Internet.username(specifier: 8..20)
+        user = User.create(username: name , email: Faker::Internet.safe_email(name: name) , password: "Password1!")
+    end
 end
 
 # Project Seeding
@@ -59,16 +66,27 @@ def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread =
     end
 end
 
+# # Generate Likes
+# def generate_likes(min_likes = 0)
+#     max_likes = User.all.count
+
+#     Comment.all.each do |comment|
+#         like_count = rand(min_likes..max_likes).to_i
+#         target_comment = Comment.find_by(id: comment + 1)
+#         like_count.times do |like|
+#             Like.create(user_id: User.find_by(id: like + 1).id , likable: target_comment)
+#         end
+#     end
+# end
+
 # Generate Updates
 
 
 # Seed Generation Chain
-
-# Main Test Account
-User.create(username: "ThatNewjackSwing" , email: "spicuzza157@gmail.com" , password: "Password1!")
-
-20.times do |user|
-    generate_users 
+if generate_users
+    20.times do |user|
+        generate_users(5)
+    end
 end
 
     
@@ -79,4 +97,4 @@ if create_projects
     end 
 end
     
-generate_forums(10 , 10 , 10) if generate_forums
+generate_forums(10 , 10 , 10) if create_forums

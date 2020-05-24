@@ -15,6 +15,8 @@ gem 'puma', '~> 4.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
+gem 'fast_jsonapi' , '~> 1.1.1'
+
 # Used for email-format validation
 gem "valid_email2"
 
