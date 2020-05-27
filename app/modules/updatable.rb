@@ -15,16 +15,11 @@ module Updatable
 
     def auto_generate_report
         new_report = ProjectUpdate.new(updatable: self)
-        puts "Auto-Generating Update for: #{self}"
         new_report.report_number = generate_unique_report_number
         new_report.report_content = "New Update Created"
         if new_report.valid?
             new_report.save
         else
-            byebug
-            puts "Error Creating ProjectUpdate"
-            puts new_report.errors
-            puts ">>>"
             {error: {message: "Error Creating Update" , log: new_report.errors}}
         end
     end
