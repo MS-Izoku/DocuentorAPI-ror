@@ -17,7 +17,7 @@ module Updatable
         new_report = ProjectUpdate.new(updatable: self)
         puts "Auto-Generating Update for: #{self}"
         new_report.report_number = generate_unique_report_number
-        new_report_content = "New Update Created"
+        new_report.report_content = "New Update Created"
         if new_report.valid?
             new_report.save
         else
@@ -30,6 +30,6 @@ module Updatable
     end
 
     included do
-        before_save :auto_generate_report
+        after_save :auto_generate_report
     end
 end
