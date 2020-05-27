@@ -1,4 +1,6 @@
 class Document < ApplicationRecord
+    include Updatable
+    
     belongs_to :project
     has_many :text_areas , as: :textareable
     has_many :project_updates , as: :updatable

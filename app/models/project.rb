@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+    include Updatable
+
     belongs_to :user
     has_many :books
     has_many :documents
