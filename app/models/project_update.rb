@@ -24,5 +24,7 @@ class ProjectUpdate < ApplicationRecord
     def generate_update_report_content
         message = "You have a new Update to: #{self.project.title}!"
         self.report_content = message
+        message
+        # self.update(report_content: message)
     end
 end
