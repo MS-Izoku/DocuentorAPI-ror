@@ -1,6 +1,4 @@
 class ProjectUpdate < ApplicationRecord
-    before_create :generate_unique_report_number
-
     validates :report_number , uniqueness: true
 
     belongs_to :updatable , :polymorphic => true

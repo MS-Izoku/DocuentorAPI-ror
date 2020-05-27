@@ -12,5 +12,4 @@ class Book < ApplicationRecord
             chapter = Chapter.new(title: "Chapter #{chapter_index}", book_id: book.book_id)
         end
     end
-
 end
