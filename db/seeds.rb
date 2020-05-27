@@ -2,10 +2,10 @@
 # My computer is old, and I'm never sure if it's crashing.  It does that
 
 # Seed Setup
-create_users = true
-create_projects = true
-create_forums = true
-create_likes_on_forums = true
+create_users = false
+create_projects = false
+create_forums = false
+create_likes_on_forums = false
 
 # Main Test Account
 default_username = "ThatNewjackSwing"
@@ -21,7 +21,7 @@ end
 
 # Project Seeding
 def generate_project
-    puts "Generating Project"
+    puts "Generating Project Base"
     test_project = Project.create(user_id: User.first.id , title: "Test Project 1" , summary: "A sample project generated from the seed")
     
     puts "Generating Seed Books"
@@ -43,6 +43,19 @@ def generate_project
     end
 end
 
+
+# Generate Likes
+def generate_likes(likable , min_likes)
+    like_count = rand(min_likes..User.all.count)
+    puts "#{likable} has #{like_count} likes"
+
+    like_count.times do |like|
+        puts "  > like ##{like}"
+        Like.create(likable: likable , user_id: like + 1)
+    end
+end
+
+
 # Generate Forums
 def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread = 10)
     forum_count.times do |forum|
@@ -59,34 +72,22 @@ def generate_forums(forum_count = 1, threads_per_forum = 10 , posts_per_thread =
             posts_per_thread.times do |forum_post|
                 new_post = ForumPost.create(user_id: User.first.id , forum_thread_id: new_thread.id ,  content: Faker::Lorem.paragraphs(number: 5))
                 3.times do
-                    Comment.create(content: "I'm a Comment!" , commentable: new_post)
+                    comment = Comment.create(content: "I'm a Comment!" , commentable: new_post , user_id: User.first.id)
+                    generate_likes(comment , 5)
                 end
             end
         end
     end
 end
 
-# # Generate Likes
-# def generate_likes(min_likes = 0)
-#     max_likes = User.all.count
 
-#     Comment.all.each do |comment|
-#         like_count = rand(min_likes..max_likes).to_i
-#         target_comment = Comment.find_by(id: comment + 1)
-#         like_count.times do |like|
-#             Like.create(user_id: User.find_by(id: like + 1).id , likable: target_comment)
-#         end
-#     end
-# end
 
 # Generate Updates
 
 
 # Seed Generation Chain
-if generate_users
-    20.times do |user|
-        generate_users(5)
-    end
+if create_users
+        generate_users(20)
 end
 
     
@@ -96,5 +97,16 @@ if create_projects
         generate_project
     end 
 end
-    
-generate_forums(10 , 10 , 10) if create_forums
+
+if create_forums
+    generate_forums(10 , 10 , 10)
+end
+
+# force_create_comments = true
+# if force_create_comments
+#     ForumPost.all.each do |post|
+#         3.times do |comment|
+#             Comment.create(user_id: User.limit(1).order("RANDOM()") , commentable: post)
+#         end
+#     end
+# end

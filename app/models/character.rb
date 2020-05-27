@@ -1,4 +1,6 @@
 class Character < ApplicationRecord
+    include Updatable
+    
     belongs_to :project
     has_many :text_areas , as: :text_areable
     has_many :project_updates , as: :updatable

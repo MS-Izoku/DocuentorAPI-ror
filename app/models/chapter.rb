@@ -1,4 +1,6 @@
 class Chapter < ApplicationRecord
+    include Updatable
+
     belongs_to :book
     has_many :project_updates , as: :updatable
 

@@ -1,4 +1,5 @@
 class ForumPost < ApplicationRecord
+    include Likable
     validates :content , presence: true
 
     belongs_to :forum_thread
